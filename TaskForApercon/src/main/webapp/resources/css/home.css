@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+@CHARSET "UTF-8";
+body{
+	padding: 0%;
+	margin: 0%;
+	background: url("../images/Checklist.png") 50% 50% no-repeat;
+	background-size: 50% 80%;
+}
+#taskone{
+	position: absolute;
+	top: 30.7%;
+	left: 38.5%;
+	text-align: center;
+	width: 20%;
+	height: 30px;
+	border-radius: 5px;
+}
+#taskone a, #tasktwo a{
+	text-decoration: none;
+	color: dimgray;
+	text-transform: uppercase;
+	line-height: 30px;
+}
+#tasktwo{
+	position: absolute;
+	top: 42.5%;
+	left: 38.5%;
+	text-align: center;
+	width: 20%;
+	height: 30px;
+	border-radius: 5px;
+}
