@@ -88,8 +88,10 @@ $(document).ready(function(){
 	
 	$(".clearParam").click(function(){
 		$(".parameters").val("");
+		$("#parameter").val("");
 		$("#numOfTestCases").val("");
 		$(".parameters").hide();
+		$(".output").hide();
 	});
 });
 

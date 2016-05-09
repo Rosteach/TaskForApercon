@@ -1,3 +1,7 @@
+/**
+ * @author Pavlenko R.A.
+ */
+
 package com.rosteach.services;
 
 import java.util.ArrayList;

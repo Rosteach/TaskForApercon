@@ -5,6 +5,7 @@
  */
 package com.rosteach.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -52,18 +53,28 @@ public class FirstTaskController {
 		String tempName = "";
 		
 		CountOfPaths count = new CountOfPaths();
+		ArrayList<String> box = new ArrayList<String>();
+		ArrayList<String> inbox = new ArrayList<String>();
 		try{
-			for(int i = 0; i<name.length();i++){ 
-				char temp = name.charAt(i);
-				if(temp==(';')){
-					// get our matrix parameter
-					m = Integer.parseInt(name.charAt(i-3)+"");
-					n = Integer.parseInt(name.charAt(i-1)+"");
-					// get output of path like 6;8;20 
-					tempName +=count.countOfPath(m,n)+"; ";
+			for (String substring: name.split(";")){
+		         box.add(substring);
+			}
+			for(String each: box){
+				for(String forEach: each.split(" ")){
+					inbox.add(forEach);
 				}
 			}
-			name=tempName;
+			for(int i = 0; i<inbox.size();i=i+2){
+				m = Integer.parseInt(inbox.get(i));
+				n = Integer.parseInt(inbox.get(i+1));
+				if(n>=11||m>=11){
+					tempName="Incorrect input!! 1<=n&m<=10";
+				}
+				else{
+					tempName+=count.countOfPath(m, n)+"; ";
+				}
+			}
+			name = tempName;
 			return name;
 		}
 		catch(Exception ex){

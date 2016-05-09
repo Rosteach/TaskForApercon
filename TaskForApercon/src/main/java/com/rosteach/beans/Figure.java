@@ -1,3 +1,6 @@
+/**
+ * @author Pavlenko R.A.
+ */
 package com.rosteach.beans;
 
 public class Figure {

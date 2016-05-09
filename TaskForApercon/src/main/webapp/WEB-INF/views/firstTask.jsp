@@ -26,7 +26,7 @@
 			<button class="clearParam">Clear Test Case</button><button class="apply">Apply</button>
 		</div>
 		<div class="parameters">
-			<p>Example:3 3;3 2;......;9 9;</p>
+			<p>Example:3 3;3 2;......;10 10;</p>
 			<input id="parameter" type="text" name="parameter" placeholder="set parameters"/>
 		</div>
 			<button class="calc">Calculate</button>
