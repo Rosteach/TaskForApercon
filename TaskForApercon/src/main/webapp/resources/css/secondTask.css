@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+body{
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+button{
+	padding:0.5%;
+	text-transform: uppercase;
+	border-radius: 5px;
+	background:#FABE28;
+}
+input{
+	text-align:center;
+}
+p{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding:1%;
+	width: 60%;
+	margin:auto;
+	margin-top:1%;
+	display: none;
+}
+#forFigureById{
+	display:none;
+}

@@ -22,7 +22,7 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
-		<load-on-startup>2</load-on-startup>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
@@ -31,7 +31,7 @@
 	</servlet-mapping>
 	
 	<!-- Processes jersey servlet for REST architecture-->
-	<servlet>  
+	<!-- <servlet>  
   		<servlet-name>jersey-serlvet</servlet-name>  
  		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>  
   		<init-param>  
@@ -48,5 +48,5 @@
  		<servlet-mapping>  
   			<servlet-name>jersey-serlvet</servlet-name>  
   			<url-pattern>/rest/*</url-pattern>  
- 		</servlet-mapping>  
+ 		</servlet-mapping>   -->
 </web-app>

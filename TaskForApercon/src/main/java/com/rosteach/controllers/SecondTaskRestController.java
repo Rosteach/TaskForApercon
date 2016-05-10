@@ -5,39 +5,44 @@ package com.rosteach.controllers;
 
 import java.util.List;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rosteach.beans.Figure;
 import com.rosteach.services.FigureService;
 
-@Path("/figures")
+@Controller
+@RequestMapping(value = "/figures")
 public class SecondTaskRestController {
 	
-	FigureService figureService = new FigureService();
+	final Logger logger = LoggerFactory.getLogger(SecondTaskRestController.class);
 	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	private FigureService figureService = new FigureService();
+	
+	@RequestMapping(value = "/getAll", method = RequestMethod.GET, produces={"application/json"})
+	@ResponseBody
 	public List<Figure> getFigures(){
 		List<Figure> listOfFigures = figureService.getAllFigures();
 		return listOfFigures;
 	}
-	
-	@GET
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Figure getFigureById(@PathParam("id") int id){
+	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces={"application/json"})
+	@ResponseBody
+	public Figure findFigureById(@PathVariable Integer id) {
 		return figureService.getFigure(id);
 	}
-	
-	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	public Figure addFigure(Figure figure){
-		return figureService.addFigure(figure);
+	@RequestMapping(value="/", method=RequestMethod.POST, produces={"application/json"})
+	@ResponseBody
+	public Figure createNew(@RequestBody Figure figure){
+		logger. info ( "Creating figure: " + figure);
+		figureService.addFigure(figure);
+		logger. info ( "Figure has created as: " + figure) ;
+		return figure;
 	}
-	
 }

@@ -30,6 +30,14 @@ public class FirstTaskController {
 		return "firstTask";
 	}
 	
+	//controller which rendering to our second task page
+	@RequestMapping(value = "/secondTask", method = RequestMethod.GET)
+	public String secondTaskPage() {
+		Date date = new Date();
+		logger.info("SecondTask page downloaded with success!  Server date & time is: {}.",date.getTime());
+		return "secondTask";
+	}
+	
 	//controller which use ajax input test cases value, validate it and send needed value of input parameters 
 	//or error of validation
 	@RequestMapping(value = "/testCases", method = RequestMethod.POST, produces = { "text/html; charset=UTF-8" })
