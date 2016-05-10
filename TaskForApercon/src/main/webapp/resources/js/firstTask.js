@@ -80,11 +80,28 @@ $(document).ready(function(){
 		else if(isNaN(input)){
 			return false
 		}
-		else{	
-			$("#parameter").attr("maxlength",input*4);
+		else{
+			//$("#parameter").attr("maxlength",input*4);
 			$(".parameters").show();
 		}
     });
+	// check our parameters input must be <= $("#numOfTestCases").val();
+	$("#parameter").keyup(function(){
+		var input = $(this).val();
+		var maxlength = 0;
+		var count = 0;
+		for(i=0;i<input.length;i++){
+			var temp = input[i];
+			if(temp==';'){
+				count++;
+				if(count==$("#numOfTestCases").val()){
+					maxlength = i;
+					$(this).attr("maxlength",maxlength);
+				}
+			}
+		}
+		
+	});
 	
 	$(".clearParam").click(function(){
 		$(".parameters").val("");
