@@ -53,17 +53,22 @@ public class FirstTaskController {
 		String tempName = "";
 		
 		CountOfPaths count = new CountOfPaths();
+		//create 2 collection to add our parameters first for pair, second for each of value pair 
 		ArrayList<String> box = new ArrayList<String>();
 		ArrayList<String> inbox = new ArrayList<String>();
+		
 		try{
+			// adding our pairs
 			for (String substring: name.split(";")){
 		         box.add(substring);
 			}
+			//adding each from pars
 			for(String each: box){
 				for(String forEach: each.split(" ")){
 					inbox.add(forEach);
 				}
 			}
+			//get our values and calculate output
 			for(int i = 0; i<inbox.size();i=i+2){
 				m = Integer.parseInt(inbox.get(i));
 				n = Integer.parseInt(inbox.get(i+1));
