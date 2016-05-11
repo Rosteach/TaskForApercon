@@ -31,6 +31,12 @@ public class SecondTaskRestController {
 		List<Figure> listOfFigures = figureService.getAllFigures();
 		return listOfFigures;
 	}
+	@RequestMapping(value = "/getAllAreas", method = RequestMethod.GET, produces={"application/json"})
+	@ResponseBody
+	public List<Double> getAllAreas(){
+		List<Double> listOfAreas = figureService.getAllAreas();
+		return listOfAreas;
+	}
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces={"application/json"})
 	@ResponseBody
 	public Figure findFigureById(@PathVariable Integer id) {

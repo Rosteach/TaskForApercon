@@ -18,7 +18,6 @@ public class FigureService {
 	public static HashMap<Integer,Figure> figureIdMap=getFigureIdMap();
 	
 	public FigureService(){
-		super();
 		if(figureIdMap==null){
 			figureIdMap= new HashMap<Integer, Figure>();
 			
@@ -58,14 +57,13 @@ public class FigureService {
 		return figure;
 	}
 	//method for calculate area
-	public String getAllAreas(List<Figure> figures){
-		String allAreas = "";
-		if(figures==null){
-			return "0";
-		}
-		//get our 
+	public List<Double> getAllAreas(){
+		List<Figure> figures = new ArrayList<Figure>(figureIdMap.values());
+		List<Double> allAreas = new ArrayList<Double>();
+		
+		//get our list of Areas
 		for(Figure figure: figures){
-			allAreas+=figure.area();
+			allAreas.add(figure.area());
 		}
 		return allAreas;
 	}

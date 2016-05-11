@@ -26,4 +26,8 @@ public class Rectangle extends Figure{
 		this.height = height;
 	}
 	
+	//@Override area method
+	public double area(){
+		return height*width;
+	}
 }
