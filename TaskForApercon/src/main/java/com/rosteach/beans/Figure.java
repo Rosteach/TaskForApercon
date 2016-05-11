@@ -4,18 +4,14 @@
 package com.rosteach.beans;
 
 public class Figure {
-	int id;
-	String name;
-	String square;
+	private int id;
+	private String name;
 	
 	public Figure(){
-		super();
 	}
-	public Figure(int id, String name, String square){
-		super();
+	public Figure(int id, String name){
 		this.id=id;
 		this.name=name;
-		this.square=square;
 	}
 	public int getId() {
 		return id;
@@ -29,10 +25,9 @@ public class Figure {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSquare() {
-		return square;
-	}
-	public void setSquare(String square) {
-		this.square = square;
+	
+	//our method to override
+	public double area(){
+		return 0;
 	}
 }

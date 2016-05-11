@@ -8,13 +8,16 @@ package com.rosteach.models;
 public class CountOfPaths {
 
 	public String countOfPath(int m, int n){
+		System.out.println("Input parameters: ["+m+"]  ["+n+"]");
 		int [][] matrix= new int [m][n];
 		// Count of paths to reach any cell in first column is 1
-		for (int i = 0; i < m; i++)
+		for (int i = 0; i < m; i++){
 			matrix[i][0] = 1;
-		// Count of paths to reach any cell in first column is 1
-		for (int j = 0; j < n; j++)
+		}
+		// Count of paths to reach any cell in first line is 1
+		for (int j = 0; j < n; j++){
 			matrix[0][j] = 1;
+		}
 		// Calculate count of paths for other cells in bottom-up manner using
 		// the recursive solution
 		for (int i = 1; i < m; i++)

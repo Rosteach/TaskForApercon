@@ -18,7 +18,7 @@ public class CountOfPathsTest {
 	
 	@Test
 	public void testResult(){
-		assertEquals(firstRes,testFirstRes);
+		assertEquals("It's ok!!",firstRes,testFirstRes);
 		assertEquals(secondRes,testSecondRes);
 	}
 }

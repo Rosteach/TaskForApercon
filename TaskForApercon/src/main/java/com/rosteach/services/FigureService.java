@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.rosteach.beans.Circle;
 import com.rosteach.beans.Figure;
+import com.rosteach.beans.Rectangle;
+import com.rosteach.beans.Triangle;
 
 public class FigureService {
 	
-	static HashMap<Integer,Figure> figureIdMap=getFigureIdMap();
+	public static HashMap<Integer,Figure> figureIdMap=getFigureIdMap();
 	
 	public FigureService(){
 		super();
@@ -20,14 +23,14 @@ public class FigureService {
 			figureIdMap= new HashMap<Integer, Figure>();
 			
 			
-			Figure triangle = new Figure(1,"Triangle","a*h/2");
-			Figure circle = new Figure(2,"Circle","p*r*r");
-			Figure rectangle = new Figure(3,"Rectangle","a*b");
+			Figure triangle = new Triangle(1, "Triangle", 2, 3);
+			Figure circle = new Circle(2,"Circle",3);
+			Figure rectangle = new Rectangle(3,"Rectangle",4,5);
 			
 			//add needed figures to our Collection
-			figureIdMap.put(1, triangle);
-			figureIdMap.put(2,circle);
-			figureIdMap.put(3, rectangle);
+			figureIdMap.put(0, triangle);
+			figureIdMap.put(1,circle);
+			figureIdMap.put(2, rectangle);
 		}
 	}
 
@@ -54,5 +57,16 @@ public class FigureService {
 		figureIdMap.put(figure.getId(), figure);
 		return figure;
 	}
-	
+	//method for calculate area
+	public String getAllAreas(List<Figure> figures){
+		String allAreas = "";
+		if(figures==null){
+			return "0";
+		}
+		//get our 
+		for(Figure figure: figures){
+			allAreas+=figure.area();
+		}
+		return allAreas;
+	}
 }
