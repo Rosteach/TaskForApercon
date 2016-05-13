@@ -22,9 +22,9 @@ public class FigureService {
 			figureIdMap= new HashMap<Integer, Figure>();
 			
 			
-			Figure triangle = new Triangle(1, "Triangle", 2, 3);
-			Figure circle = new Circle(2,"Circle",3);
-			Figure rectangle = new Rectangle(3,"Rectangle",4,5);
+			Figure triangle = new Triangle("Triangle", 2, 3);
+			Figure circle = new Circle("Circle",3);
+			Figure rectangle = new Rectangle("Rectangle",4,5);
 			
 			//add needed figures to our Collection
 			figureIdMap.put(0, triangle);
@@ -52,8 +52,7 @@ public class FigureService {
 	}
 	//method for adding figures
 	public Figure addFigure(Figure figure){
-		figure.setId(figureIdMap.size()+1);
-		figureIdMap.put(figure.getId(), figure);
+		figureIdMap.put(figureIdMap.size()+1, figure);
 		return figure;
 	}
 	//method for calculate area

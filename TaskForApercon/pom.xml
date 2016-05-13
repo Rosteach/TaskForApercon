@@ -199,7 +199,13 @@
           	<artifactId>jackson-databind</artifactId>
           	<version>${jackson.databind-version}</version>
         </dependency>
-               
+        <!-- Gson dependency --> 
+        <dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+         
         <!-- JAXB XML Binding -->       
         <dependency>
 		  	<groupId>javax.xml.bind</groupId>
