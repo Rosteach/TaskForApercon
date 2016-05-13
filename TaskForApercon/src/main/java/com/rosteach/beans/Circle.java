@@ -6,8 +6,8 @@ public class Circle extends Figure{
 	
 	public Circle(){	
 	}
-	public Circle(String name, double r){
-		super(name);
+	public Circle(int id,String name, double r){
+		super(id,name);
 		this.radius=r;
 	}
 	public double getRadius() {

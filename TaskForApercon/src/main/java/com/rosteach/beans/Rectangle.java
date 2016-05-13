@@ -7,8 +7,8 @@ public class Rectangle extends Figure{
 	public Rectangle(){
 		
 	}
-	public Rectangle(String name,double h, double w){
-		super(name);
+	public Rectangle(int id,String name,double h, double w){
+		super(id,name);
 		this.height=h;
 		this.width=w;
 	}

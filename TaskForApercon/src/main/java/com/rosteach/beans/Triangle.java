@@ -7,8 +7,8 @@ public class Triangle extends Figure{
 	public Triangle(){
 		super();
 	}
-	public Triangle(String name,double h, double a){
-		super(name);
+	public Triangle(int id, String name, double h, double a){
+		super(id, name);
 		this.height=h;
 		this.side=a;
 	}
