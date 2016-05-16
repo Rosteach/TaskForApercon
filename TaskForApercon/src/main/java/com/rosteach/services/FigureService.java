@@ -52,7 +52,7 @@ public class FigureService {
 	}
 	//method for adding figures
 	public Figure addFigure(Figure figure){
-		figure.setId(figureIdMap.size()+1);
+		figure.setId(figureIdMap.size());
 		figureIdMap.put(figure.getId(), figure);
 		return figure;
 	}
