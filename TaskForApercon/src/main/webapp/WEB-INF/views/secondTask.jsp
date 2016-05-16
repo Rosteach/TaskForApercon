@@ -30,8 +30,8 @@
         </ul>
     </nav>
     <div class="links">
-		<a href="figures/listAll" class="link">Show all figures</a>
-		<a href="figures/listAllAreas" class="link">Show all areas</a>
+		<a href="figures/" class="link">Show all figures</a>
+		<a href="figures/areas" class="link">Show all areas</a>
 	</div>
 </body>
 </html>

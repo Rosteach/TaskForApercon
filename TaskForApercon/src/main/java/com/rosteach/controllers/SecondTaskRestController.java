@@ -16,17 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.rosteach.beans.Circle;
 import com.rosteach.beans.Figure;
-import com.rosteach.beans.Rectangle;
-import com.rosteach.beans.Triangle;
 import com.rosteach.services.FigureService;
+import com.rosteach.validation.FigureValid;
 
 @RestController
 @RequestMapping(value = "/figures")
-public class SecondTaskRestController {
+public class SecondTaskRestController{
 	
-	final Logger logger = LoggerFactory.getLogger(SecondTaskRestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(SecondTaskRestController.class);
 	
 	private FigureService figureService = new FigureService();
 	
@@ -36,80 +34,70 @@ public class SecondTaskRestController {
 		List<Figure> listOfFigures = figureService.getAllFigures();
 		return listOfFigures;
 	}
+	
 	//return list of pre-calculated areas for each figure in the list above 
 	@RequestMapping(value = "/areas", method = RequestMethod.GET, produces={"application/json"})
 	public List<Double> getAllAreas(){
 		List<Double> listOfAreas = figureService.getAllAreas();
 		return listOfAreas;
 	}
+	
 	//return special figure initialized by the index in our collection 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces={"application/json"})
 	public Figure findFigureById(@PathVariable Integer id) {
 		return figureService.getFigure(id);
 	}
-	//add new figure, and return it if the request is successed else null expected
+	
+	//ADD(POST) new figure, and return it if the request is successed else null expected
 	@RequestMapping(value="/add", method=RequestMethod.POST, produces={"application/json"})
-	public Figure createNew(@RequestBody String request){
+	public ResponseEntity<Figure> add(@RequestBody String request){
 		 
 		String myFigureName = new Gson().fromJson(request, Figure.class).getName();  
-
-		  if(myFigureName.equals("Triangle"))
-		  {
-			   Triangle triangle = new Gson().fromJson(request, Triangle.class);
-			   figureService.addFigure(triangle);
-			   return triangle;
-		  }
-		  else if(myFigureName.equals("Rectangle"))
-		  {
-			   Rectangle rectangle = new Gson().fromJson(request, Rectangle.class);
-			   figureService.addFigure(rectangle);
-			   return rectangle;
-		  }
-		  else if(myFigureName.equals("Circle"))
-		  {
-			   Circle circle = new Gson().fromJson(request, Circle.class);
-			   figureService.addFigure(circle);
-			   return circle;
-		  }
-		  else{
-		   return null;
-		  }
+		
+		//validate our input figure
+		FigureValid check = new FigureValid();
+		Figure figure = check.validate(request,myFigureName);
+		
+		//add new figure
+		figureService.addFigure(figure);
+		
+		return new ResponseEntity<Figure>(figure, HttpStatus.OK);
 	}
-	//delete figure by id 
+	
+	//DELETE(DELETE) figure by id 
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces={"application/json"})
 	public void deleteFigure(@PathVariable int id){
 		figureService.deleteFigure(id);
 	}
-	//update existing figure with method PUT
+	
+	//UPDATE(PUT) existing figure with method PUT
 	@RequestMapping(value="/{id}", method= RequestMethod.PUT, produces={"application/json"})
 	public ResponseEntity<Figure> updateFigure(@PathVariable int id,@RequestBody String request){
+		
 		Figure tempFigure = figureService.getFigure(id);
+		String tempFigureName = new Gson().fromJson(request, Figure.class).getName();
 		
 		//check if exist
 		if(tempFigure==null){
+			//logger
+			logger.info("HttpStatus.NOT_FOUND");
+			
 			return new ResponseEntity<Figure>(HttpStatus.NOT_FOUND);
 		}
-		else if(tempFigure.getName().equals("Triangle")){
-			System.out.println("In Triangle --------------------------- "+tempFigure.getName());
-			Triangle triangle = new Gson().fromJson(request, Triangle.class);
-			figureService.updateFigure(triangle);
-			return new ResponseEntity<Figure>(triangle, HttpStatus.OK);
-		}
-		else if(tempFigure.getName().equals("Rectangle")){
-			System.out.println("In Rectangle --------------------------- "+tempFigure.getName());
-			Rectangle rectangle = new Gson().fromJson(request, Rectangle.class);
-	
-			figureService.updateFigure(rectangle);
+		else if(tempFigureName!=null){
+			//logger
+			logger.info("Figure with parameters [id: "+tempFigure.getId()+"],[name: "+tempFigureName+"] updated successfully!!");
+			//validate input figure
+			FigureValid check = new FigureValid();
+			Figure figure = check.validate(request,tempFigureName);
 			
-			return new ResponseEntity<Figure>(rectangle, HttpStatus.OK);
-		}
-		else if(tempFigure.getName().equals("Circle")){
-			System.out.println("In Circle --------------------------- "+tempFigure.getName());
-			Circle circle = new Gson().fromJson(request, Circle.class);
-			figureService.updateFigure(circle);
-			return new ResponseEntity<Figure>(circle, HttpStatus.OK);
+			figureService.updateFigure(figure);
+			return new ResponseEntity<Figure>(figure, HttpStatus.OK);
 		}
 		else{
+			//logger
+			logger.info("HttpStatus.BAD_REQUEST");
+			
 			return new ResponseEntity<Figure>(HttpStatus.BAD_REQUEST);
 		}
 	}
